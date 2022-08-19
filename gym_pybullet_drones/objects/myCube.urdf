@@ -67,7 +67,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-			<mesh filename="cube.obj" scale="2 2 10"/>
+			<mesh filename="cube.obj" scale="2 2 8"/>
       </geometry>
        <material name="white">
         <color rgba="1 1 1 1"/>
@@ -76,7 +76,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-	 	<box size="2 2 10"/>
+	 	<box size="2 2 8"/>
       </geometry>
     </collision>
   </link>

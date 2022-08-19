@@ -108,7 +108,7 @@ class FlyThruGateAviary(BaseSingleAgentAviary):
         buildings_ids.append(id)
 
         id = p.loadURDF(pkg_resources.resource_filename('gym_pybullet_drones', 'objects/myCube.urdf'),
-                        [15, 35, 5],
+                        [15, 35, 4],
                         p.getQuaternionFromEuler([0, 0, 0]),
                         physicsClientId=self.CLIENT
                         )
