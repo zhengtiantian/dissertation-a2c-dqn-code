@@ -1,0 +1,6 @@
+*.pyc
+*.xml
+.idea/
+.DS_Store
+*.ckpt
+*.png
