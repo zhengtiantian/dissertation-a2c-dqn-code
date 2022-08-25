@@ -1194,6 +1194,9 @@ class BaseAviary(gym.Env):
         # raise NotImplementedError
         return {"answer": 42}
 
+    def _calculateDistance2D(self, cur_xyz, target_xyz):
+
+        return (((target_xyz[0] - cur_xyz[0]) ** 2) + ((target_xyz[1] - cur_xyz[1]) ** 2)) ** (1 / 2)
     def _calculateDistance(self, cur_xyz, target_xyz):
 
         return (((target_xyz[0] - cur_xyz[0]) ** 2) + ((target_xyz[1] - cur_xyz[1]) ** 2) + (

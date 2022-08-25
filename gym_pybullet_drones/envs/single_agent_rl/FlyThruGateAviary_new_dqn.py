@@ -31,7 +31,7 @@ class FlyThruGateAviary_new_dqn(BaseSingleAgentAviary_new_dqn):
                  buildings=None,
                  building_ids=None,
                  base_stations=None,
-                 episode_len_sec: int = 320,
+                 episode_len_sec: int = 160,
                  ideal_vel=2
                  ):
         """Initialization of a single agent RL environment.

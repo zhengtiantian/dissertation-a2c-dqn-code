@@ -41,7 +41,7 @@ task_dict = {
 def main(model=None, env=None):
     MODEL_NAME = "A2C"
     # TASK_NAME = "AT=0_RW=0"
-    TASK_NAME = "AT=7_RW=0"
+    TASK_NAME = "AT=0_RW=0"
     # TASK_NAME = "AT=20_RW=0"
     # TASK_NAME = "Integated_RW=0"
 
@@ -62,7 +62,7 @@ def main(model=None, env=None):
     EPISODE_LEN_SEC = 160
 
     ds = "test4B7Bs13S3R_VEL_2D"
-    load_path = os.path.join(MODEL_PATH, f"model_33_{ds}.ckpt")
+    load_path = os.path.join(MODEL_PATH, f"model_6_{ds}.ckpt")
     # load_path = os.path.join(MODEL_PATH, f"model_{CUR_EPISODE}_{ds}.pkl")
 
     if env is None:
@@ -80,6 +80,8 @@ def main(model=None, env=None):
                          n_steps=env.SIM_FREQ * env.EPISODE_LEN_SEC * BATCH_SIZE
                          )
 
+
+
     check_env(env, warn=True, skip_render_check=True)
     model.set_env(env)
 
@@ -88,7 +90,7 @@ def main(model=None, env=None):
                     )
     env.seed(0)
     model.set_random_seed(0)
-
+    print(model.policy)
     obs = env.reset()
     # logger.visualize(env, map_size=(500, 500), save_as=os.path.join(MODEL_PATH, f"result_{CUR_EPISODE}_{ds}.png"))
     print("start test: \n\n")

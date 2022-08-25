@@ -326,6 +326,19 @@ class FlyThruGateAviary(BaseSingleAgentAviary):
         txy = 0
         tz = 0.025
 
+        cur_pos = self.pos[0]
+        cur_dis = self._calculateDistance(self.pos[0], self.TARGET_XYZ)
+        # cur_time = self.step_counter / self.SIM_FREQ
+        cur_time = self.step_counter * self.TIMESTEP
+        cur_vel = np.linalg.norm(self.vel[0])
+        length = cur_vel * cur_time
+        if self.step_counter / self.SIM_FREQ > self.EPISODE_LEN_SEC or cur_dis < self.MAX_ERROR_WITH_TARGET \
+                or cur_pos[2] < 5:  # or self._detectCollision(1):
+            # self.P_DISTANCE = self._calculateDistance(self.INIT_XYZS[0], self.TARGET_XYZ)
+            print("====== end")
+            print('====== final_pos: %s, final_dis: %.2f, final_vel: %.2f, time: %.2f, path length: %.2f' %
+                  (str(cur_pos.round(2)), cur_dis, cur_vel, cur_time, length))
+
         # print("p:" + str(self.P_DISTANCE))
         cur_uav_pos = self.pos[0]
         cur_dis = self._calculateDistance(self.pos[0], self.TARGET_XYZ)
@@ -342,21 +355,7 @@ class FlyThruGateAviary(BaseSingleAgentAviary):
         elif cur_dis <= self.MAX_ERROR_WITH_TARGET:
             print("end ----------------------------------------------------------------------------------- arrived")
             return True
-        # elif cur_uav_pos[2] < tz:
-        #     print("end")
-        #     return True
-        # elif cur_uav_pos[0] > self.TARGET_XYZ[0] or cur_uav_pos[1] > self.TARGET_XYZ[1] or cur_uav_pos[2] > self.TARGET_XYZ[2]:
-        #     print("end")
-        #     return True
 
-        # elif cur_uav_pos[0] < txy or cur_uav_pos[1] < txy or cur_uav_pos[2] < tz:
-        #
-        #     print("end")
-        #     return True
-
-        # elif p.getContactPoints(1, 2) or p.getContactPoints(1, 3):
-        #     print("end")
-        #     return True
         else:
             return False
 

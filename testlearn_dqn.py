@@ -35,20 +35,13 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     initial_xyzs = np.array([args.initial_x, 0, 10]).reshape(1, 3)
-    env = FlyThruGateAviary_new_dqn(gui=True, record=False, freq=240, initial_xyzs=initial_xyzs)
+    env = FlyThruGateAviary_new_dqn(gui=False, record=False, freq=60, initial_xyzs=initial_xyzs)
 
     # env = FlyThruGateAviary_new_dqn(gui=True,record=False, freq=240)
     print("[INFO] Action space:", env.action_space)
     print("[INFO] Observation space:", env.observation_space)
     check_env(env, warn=True,  skip_render_check=True )
 
-    #### Train the models #######################################
-
-    # model = DQN(MlpPolicy,
-    #             env,
-    #             verbose=1
-    #             )
-    # model.learn(total_timesteps=3000000)  # Typically not enough
 
 
     #### Show (and record a video of) the models's performance ##
@@ -59,7 +52,7 @@ if __name__ == "__main__":
 
     load_path = "models_dqn/model2022819_" + ds + "(" + str(args.initial_x) + ")" + ".ckpt"
 
-    model = DQN.load(load_path)
+    model = DQN.load(load_path,gamma=0.9)
 
     print(model.policy)
 
@@ -69,30 +62,8 @@ if __name__ == "__main__":
     obs = env.reset()
     start = time.time()
 
-    # 版本1
-    # for i in range(30000000 * env.SIM_FREQ):
-    #     if not ARGS.rllib:
-    #         action, _states = model.predict(obs,
-    #                                         deterministic=True
-    #                                         )
-    #
-    #
-    #     print("action:" + str(action))
-    #     obs, reward, done, info = env.step(action)
-    #     # logger.log(drone=0,
-    #     #            timestamp=i / env.SIM_FREQ,
-    #     #            state=np.hstack([obs[0:3], np.zeros(4), obs[3:15], np.resize(action, (4))]),
-    #     #            control=np.zeros(12)
-    #     #            )
-    #     if i % env.SIM_FREQ == 0:
-    #         env.render()
-    #         print(done)
-    #     sync(i, start, env.TIMESTEP)
-    #     if done:
-    #         obs = env.reset()
 
 
-    # 版本2
     for _ in range(1):
         for i in range(env.EPISODE_LEN_SEC * env.SIM_FREQ):
             action, _states = model.predict(obs, deterministic=True)

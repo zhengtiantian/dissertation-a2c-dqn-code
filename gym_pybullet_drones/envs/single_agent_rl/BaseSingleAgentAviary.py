@@ -305,7 +305,7 @@ class BaseSingleAgentAviary(BaseAviary):
                           action
                           ):
 
-        # print(action)
+        # print('action:'+str(action[3]))
         """Pre-processes the action passed to `.step()` into motors' RPMs.
 
         Parameter `action` is processed differenly for each of the different
@@ -378,6 +378,7 @@ class BaseSingleAgentAviary(BaseAviary):
                 self.AGGR_PHY_STEPS * self.TIMESTEP
             target_pos[2] = 10
             target_vel = self.SPEED_LIMIT * np.abs(action[3]) * v_unit_vector
+            # print('target_vel:' + str(target_vel))
             rpm, _, _ = self.ctrl.computeControl(control_timestep=self.AGGR_PHY_STEPS * self.TIMESTEP,
                                                  cur_pos=state[0:3],
                                                  cur_quat=state[3:7],

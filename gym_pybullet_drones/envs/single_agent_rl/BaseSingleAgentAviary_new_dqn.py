@@ -308,7 +308,7 @@ class BaseSingleAgentAviary_new_dqn(BaseAviary_new_dqn):
                           action
                           ):
 
-        # print(action)
+        # print('action:'+str(action[3]))
         """Pre-processes the action passed to `.step()` into motors' RPMs.
 
         Parameter `action` is processed differenly for each of the different
@@ -375,7 +375,8 @@ class BaseSingleAgentAviary_new_dqn(BaseAviary_new_dqn):
             target_pos[0:3] += self.SPEED_LIMIT * np.abs(action[3]) * v_unit_vector * \
                                self.AGGR_PHY_STEPS * self.TIMESTEP
             target_pos[2] = 10
-            target_vel = self.SPEED_LIMIT * np.abs(action[3]) * v_unit_vector
+            target_vel = self.SPEED_LIMIT * np.abs(1) * v_unit_vector
+            # print('target_vel:' + str(target_vel))
             rpm, _, _ = self.ctrl.computeControl(control_timestep=self.AGGR_PHY_STEPS * self.TIMESTEP,
                                                  cur_pos=state[0:3],
                                                  cur_quat=state[3:7],

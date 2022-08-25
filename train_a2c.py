@@ -76,7 +76,7 @@ if __name__ == "__main__":
             # with open(load_path, 'rb') as f:
             #     model = pickle.load(f)
             model = MODEL.load(load_path,
-                               gamma=0.95,
+                               gamma=0.90,
                                # gamma=0.999,
                                ent_coef=0.0001,
                                verbose=1,
@@ -91,7 +91,7 @@ if __name__ == "__main__":
             model = SAC('MlpPolicy', env, verbose=1, gradient_steps=-1)
         else:
             model = MODEL('MlpPolicy', env,
-                          gamma=0.95,
+                          gamma=0.9,
                           # gamma=1,
                           ent_coef=0.0001,
                           verbose=1,
